@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AndroidERestaurant</string>
+    <string name="title_home">Welcome to the SpaceCoffee</string>
+    <string name="background_description">barComptoir</string>
+</resources>
