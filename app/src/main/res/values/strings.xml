@@ -2,4 +2,7 @@
     <string name="app_name">AndroidERestaurant</string>
     <string name="title_home">Welcome to the SpaceCoffee</string>
     <string name="background_description">barComptoir</string>
+    <string name="entree">Entrée</string>
+    <string name="plat">Plats</string>
+    <string name="dessert">Desserts</string>
 </resources>
