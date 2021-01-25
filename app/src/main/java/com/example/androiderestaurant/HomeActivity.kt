@@ -42,8 +42,12 @@ class HomeActivity : AppCompatActivity() {
         })
 
     }
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, getString(R.string.logMessageFood))
+    }
 
-    override fun onDestroyView() {
+    override fun onDestroy() {
        super.onDestroy()
         Log.i(TAG, getString(R.string.logMessageHome))
     }
