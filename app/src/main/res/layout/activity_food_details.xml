@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodDetails">
+
+    <ImageView
+        android:id="@+id/detailsBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/detailsBackground"
+        android:rotation="-90"
+        android:scaleX="1.8"
+        android:scaleY="1.8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/food_details" />
+
+    <ImageView
+        android:id="@+id/logoDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="132dp"
+        android:contentDescription="@string/descLogo"
+        app:layout_constraintBottom_toBottomOf="@+id/detailsBackground"
+        app:layout_constraintEnd_toEndOf="@+id/detailsBackground"
+        app:layout_constraintTop_toTopOf="@+id/detailsBackground"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/titleDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="@string/Placeholder"
+        android:textColor="#D30FFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/logoDetails"
+        app:layout_constraintStart_toStartOf="@+id/logoDetails"
+        app:layout_constraintTop_toBottomOf="@+id/logoDetails" />
+
+    <TextView
+        android:id="@+id/Desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="@string/Placeholder"
+        android:textColor="#EA079E"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/titleDetails"
+        app:layout_constraintStart_toStartOf="@+id/titleDetails"
+        app:layout_constraintTop_toBottomOf="@+id/titleDetails" />
+
+    <Button
+        android:id="@+id/addCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:text="@string/addToCart"
+        app:layout_constraintEnd_toEndOf="@+id/Desc"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="@+id/Desc"
+        app:layout_constraintTop_toBottomOf="@+id/Desc" />
+</androidx.constraintlayout.widget.ConstraintLayout>

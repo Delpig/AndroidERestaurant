@@ -1,10 +1,11 @@
 package com.example.androiderestaurant
 
+import android.content.Intent
+import android.provider.AlarmClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androiderestaurant.databinding.ActivityHomeBinding
 import com.example.androiderestaurant.databinding.RecyclerViewBinding
 
 class FoodAdapter(val items: Array<Food>) : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
@@ -13,7 +14,7 @@ class FoodAdapter(val items: Array<Food>) : RecyclerView.Adapter<FoodAdapter.Vie
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FoodAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text = items[position].title
         holder.desc.text = items[position].desc
     }

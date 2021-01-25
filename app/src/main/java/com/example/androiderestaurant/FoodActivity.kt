@@ -35,6 +35,8 @@ class FoodActivity : AppCompatActivity() {
 
         binding.FoodRecyclerView.layoutManager =  LinearLayoutManager(this)
         binding.FoodRecyclerView.adapter = FoodAdapter(foodEntree)
+
+
     }
 
     override fun onStop() {
