@@ -1,14 +1,17 @@
 package com.example.androiderestaurant
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.util.Log
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.androiderestaurant.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
+    private val TAG = "HomeActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,25 +21,30 @@ class HomeActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.button.setOnClickListener(View.OnClickListener {
-            val text = "Entrées"
-            val duration = Toast.LENGTH_SHORT
-
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()  })
+            val intent = Intent(this, FoodActivity::class.java).apply {
+                putExtra(EXTRA_MESSAGE, getString(R.string.entree))
+            }
+            startActivity(intent)
+        })
 
         binding.button2.setOnClickListener(View.OnClickListener {
-            val text = "Plats"
-            val duration = Toast.LENGTH_SHORT
-
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()  })
+            val intent = Intent(this, FoodActivity::class.java).apply {
+                putExtra(EXTRA_MESSAGE, getString(R.string.plat))
+            }
+            startActivity(intent)
+        })
 
         binding.button3.setOnClickListener(View.OnClickListener {
-            val text = "Desserts"
-            val duration = Toast.LENGTH_SHORT
+            val intent = Intent(this, FoodActivity::class.java).apply {
+                putExtra(EXTRA_MESSAGE, getString(R.string.dessert))
+            }
+            startActivity(intent)
+        })
 
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()  })
+    }
 
+    override fun onDestroyView() {
+       super.onDestroy()
+        Log.i(TAG, getString(R.string.logMessageHome))
     }
 }
