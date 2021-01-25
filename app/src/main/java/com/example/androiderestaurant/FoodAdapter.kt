@@ -22,7 +22,7 @@ class FoodAdapter(val items: Array<Food>) : RecyclerView.Adapter<FoodAdapter.Vie
 
     class ViewHolder(val binding: RecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
         val title = binding.listTitle
-        val desc = binding.listDescription
+        val desc = binding.listPrice
     }
 }
 

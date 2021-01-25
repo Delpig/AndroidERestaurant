@@ -8,4 +8,7 @@
     <string name="logMessageHome">Home activity destroyed</string>
     <string name="logMessageFood">Food activity destroyed</string>
     <string name="background_description2">valeurDuResto</string>
+    <string name="descLogo">LogoDuPlat</string>
+    <string name="nextLogo">next</string>
+    <string name="Placeholder">Placeholder</string>
 </resources>
