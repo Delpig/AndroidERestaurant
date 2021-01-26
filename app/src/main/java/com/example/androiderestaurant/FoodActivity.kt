@@ -1,5 +1,6 @@
 package com.example.androiderestaurant
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
@@ -34,7 +35,11 @@ class FoodActivity : AppCompatActivity() {
         binding.textView2.text = intent.getStringExtra(EXTRA_MESSAGE)
 
         binding.FoodRecyclerView.layoutManager =  LinearLayoutManager(this)
-        binding.FoodRecyclerView.adapter = FoodAdapter(foodEntree)
+        binding.FoodRecyclerView.adapter = FoodAdapter(foodEntree) {
+            val intent = Intent(this, FoodDetails::class.java)
+            intent.putExtra("category", it)
+            startActivity(intent)
+        }
 
 
     }

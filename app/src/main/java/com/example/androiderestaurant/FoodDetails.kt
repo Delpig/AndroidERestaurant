@@ -1,11 +1,19 @@
 package com.example.androiderestaurant
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.AlarmClock
 import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.androiderestaurant.databinding.ActivityFoodDetailsBinding
-import com.example.androiderestaurant.databinding.ActivityHomeBinding
+import org.json.JSONObject
+
 
 class FoodDetails : AppCompatActivity() {
 
@@ -19,5 +27,22 @@ class FoodDetails : AppCompatActivity() {
         setContentView(view)
 
         binding.titleDetails.text = intent.getStringExtra(EXTRA_MESSAGE)
+
+        val queue: RequestQueue = Volley.newRequestQueue(this)
+        val url = "http://test.api.catering.bluecodegames.com/menu"
+
+        val postData = JSONObject()
+        postData.put("id_shop", "1")
+
+
+        val postRequest = JsonObjectRequest(Request.Method.POST, url, postData,
+            { response -> // response
+                Log.d("Response", response.toString())
+            },
+            { error -> // error
+                Log.d("Error.Response", error.toString())
+            }
+        )
+        queue.add(postRequest)
     }
 }
