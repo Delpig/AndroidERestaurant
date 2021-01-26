@@ -19,28 +19,31 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="52dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:contentDescription="@string/descLogo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/list_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/list_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:text="@string/Placeholder"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/list_price"
+            app:layout_constraintEnd_toStartOf="@+id/next"
             app:layout_constraintStart_toEndOf="@+id/logo"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,13 +51,13 @@
             android:id="@+id/list_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/Placeholder"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/list_title"
-            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintHorizontal_bias="0.48"
             app:layout_constraintStart_toStartOf="@+id/list_title"
             app:layout_constraintTop_toBottomOf="@+id/list_title" />
 
@@ -63,15 +66,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:layout_marginEnd="1dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="48dp"
             android:contentDescription="@string/nextLogo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.687"
-            app:layout_constraintStart_toEndOf="@+id/list_title"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@android:drawable/ic_media_play" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
