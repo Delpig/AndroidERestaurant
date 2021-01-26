@@ -12,6 +12,8 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.androiderestaurant.databinding.ActivityFoodDetailsBinding
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import org.json.JSONObject
 
 
@@ -28,21 +30,6 @@ class FoodDetails : AppCompatActivity() {
 
         binding.titleDetails.text = intent.getStringExtra(EXTRA_MESSAGE)
 
-        val queue: RequestQueue = Volley.newRequestQueue(this)
-        val url = "http://test.api.catering.bluecodegames.com/menu"
 
-        val postData = JSONObject()
-        postData.put("id_shop", "1")
-
-
-        val postRequest = JsonObjectRequest(Request.Method.POST, url, postData,
-            { response -> // response
-                Log.d("Response", response.toString())
-            },
-            { error -> // error
-                Log.d("Error.Response", error.toString())
-            }
-        )
-        queue.add(postRequest)
     }
 }

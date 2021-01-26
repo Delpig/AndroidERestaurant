@@ -5,14 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.androiderestaurant.databinding.ActivityFoodBinding
-import com.example.androiderestaurant.databinding.ActivityHomeBinding
+import com.google.gson.Gson
+import org.json.JSONObject
 
 class FoodActivity : AppCompatActivity() {
 
@@ -34,14 +36,46 @@ class FoodActivity : AppCompatActivity() {
 
         binding.textView2.text = intent.getStringExtra(EXTRA_MESSAGE)
 
+
+        loadData(intent.getStringExtra("category")?:"")
+
+    }
+
+    fun loadData(category: String){
+        val queue: RequestQueue = Volley.newRequestQueue(this)
+        val url = "http://test.api.catering.bluecodegames.com/menu"
+
+        val postData = JSONObject()
+        postData.put("id_shop", "1")
+
+
+        val postRequest = JsonObjectRequest(
+            Request.Method.POST, url, postData,
+            {
+                Log.d("Response", it.toString())
+                val gson: DataResult = Gson().fromJson(it.toString(), DataResult::class.java)
+                val categories: List<String> = gson.data.map{it.name}
+                displayCategories(categories)
+            },
+            {
+                Log.d("Error.Response", it.toString())
+            }
+        )
+        queue.add(postRequest)
+    }
+
+    private fun displayCategories(categories: List<String>){
+        binding.progressBar.visibility = View.GONE
+        binding.progressBar.isVisible = false
+
+        binding.FoodRecyclerView.isVisible = true
+
         binding.FoodRecyclerView.layoutManager =  LinearLayoutManager(this)
-        binding.FoodRecyclerView.adapter = FoodAdapter(foodEntree) {
+        binding.FoodRecyclerView.adapter = FoodAdapter(categories) {
             val intent = Intent(this, FoodDetails::class.java)
             intent.putExtra("category", it)
             startActivity(intent)
         }
-
-
     }
 
     override fun onStop() {
