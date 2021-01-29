@@ -12,9 +12,10 @@
     <string name="nextLogo">next</string>
     <string name="Placeholder">Placeholder</string>
     <string name="detailsBackground">LIVENUDES</string>
-    <string name="addToCart">Ajouter au panier</string>
+    <string name="addToCart">Ajouter au panier </string>
     <string name="errorNoPlats">Pas de plats dispo au resto</string>
     <string name="errorRetrieve">Impossible de récupérer la liste des {category}. Veuillez réessayez...\"</string>
     <string name="addButton">addButton</string>
     <string name="removeButton">removeButton</string>
+    <string name="nbToAdd">1</string>
 </resources>
