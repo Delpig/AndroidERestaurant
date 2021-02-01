@@ -2,19 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="fr.isen.leclere.androiderestaurant">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AndroidERestaurant"
+        android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name="fr.isen.leclere.androiderestaurant.FoodDetails"/>
-        <activity android:name="fr.isen.leclere.androiderestaurant.FoodActivity" />
-        <activity android:name="fr.isen.leclere.androiderestaurant.HomeActivity">
+        <activity android:name=".loginActivity"></activity>
+        <activity android:name=".CartActivity" />
+        <activity android:name=".ToolBarActivity" />
+        <activity android:name=".FoodDetailsActivity" />
+        <activity android:name=".FoodActivity" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

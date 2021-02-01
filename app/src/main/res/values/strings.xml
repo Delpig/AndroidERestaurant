@@ -18,4 +18,9 @@
     <string name="addButton">addButton</string>
     <string name="removeButton">removeButton</string>
     <string name="nbToAdd">1</string>
+    <string name="foodDetails">Activity FoodDetails destroy</string>
+    <string name="inscription">S\'inscrire</string>
+    <string name="connect">Se connecter</string>
+    <string name="loginBackground">loginBackground</string>
+    <string name="createAccount">Créer un compte</string>
 </resources>
