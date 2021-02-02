@@ -31,6 +31,19 @@ class CartActivity : AppCompatActivity() {
             loadData(this)
             binding.itemsswipetorefreshCart.isRefreshing = false
         }
+
+        binding.commander.setOnClickListener{
+
+            val sharedPreference =  getSharedPreferences("PREFERENCE_NUMBER_CART",Context.MODE_PRIVATE)
+            val account =sharedPreference.getString("id_user","0")
+            if(account == "0"){
+                val intent = Intent(this, CreateAccountActivity::class.java)
+                startActivity(intent)
+            } else{
+                val intent = Intent(this, OrderActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun loadData(cartActivity: CartActivity) {
@@ -38,12 +51,14 @@ class CartActivity : AppCompatActivity() {
         val gson: Gson = GsonBuilder().setPrettyPrinting().create()
         if(file.exists()){
             val json: Basket = gson.fromJson(file.readText(), Basket::class.java)
-
+            binding.emptyCart.isVisible = false
             binding.progressBar.isVisible = false
             binding.CartRecyclerView.isVisible = true
             binding.CartRecyclerView.layoutManager =  LinearLayoutManager(this)
             binding.CartRecyclerView.adapter = CartAdapter(json.itemList, file, cartActivity)
             invalidateOptionsMenu()
+        }else{
+            binding.progressBar.isVisible = false
         }
 
 
@@ -72,12 +87,14 @@ class CartActivity : AppCompatActivity() {
             true
         }
         R.id.inscription -> {
-
+            val intent = Intent(this, CreateAccountActivity::class.java)
+            startActivity(intent)
             true
         }
 
         R.id.connexion -> {
-
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
             true
         }
 
@@ -97,7 +114,17 @@ class CartActivity : AppCompatActivity() {
     }
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         val item = menu.findItem(R.id.cartNb)
+        val file = File(cacheDir.absolutePath + "UserCart.json")
+        val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+        val json: Basket = gson.fromJson(file.readText(), Basket::class.java)
+        var nb = 0
+        for(item in json.itemList){
+            nb+=item.quantity
+        }
         val sharedPreference =  getSharedPreferences("PREFERENCE_NUMBER_CART", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("number", nb.toString())
+        editor.apply()
         item.title =sharedPreference.getString("number","0")
         return super.onPrepareOptionsMenu(menu)
     }

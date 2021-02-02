@@ -14,7 +14,9 @@
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".loginActivity"></activity>
+        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".CreateAccountActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".ToolBarActivity" />
         <activity android:name=".FoodDetailsActivity" />

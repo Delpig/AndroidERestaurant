@@ -23,4 +23,23 @@
     <string name="connect">Se connecter</string>
     <string name="loginBackground">loginBackground</string>
     <string name="createAccount">Créer un compte</string>
+    <string name="name">Nom</string>
+    <string name="prenom">Prénom</string>
+    <string name="mail">Adresse mail</string>
+    <string name="mdp">Mot de passe</string>
+    <string name="okCompte">Valider le compte</string>
+    <string name="back">Retour</string>
+    <string name="connection">Se connecter</string>
+    <string name="login">Login</string>
+    <string name="commander">Commander</string>
+    <string name="adresse">Adresse</string>
+    <string name="successCreation">Création de votre compte</string>
+    <string name="errorCreation">Erreur lors de la création du compte</string>
+    <string name="logMessageLogin">Login Activity Destroyed</string>
+    <string name="logMessageAccount">Create Account Activity Destroyed</string>
+    <string name="connected">Vous êtes connecté</string>
+    <string name="createAnAccount">Veuillez créer un compte</string>
+    <string name="commandValid">Commande Validé</string>
+    <string name="ErrorCommande">Erreur lors de la commande</string>
+    <string name="cartEmptu">Votre panier est vide</string>
 </resources>

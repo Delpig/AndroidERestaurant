@@ -54,12 +54,14 @@ class CartAdapter(
     }
 
     fun deleteItem(position: Int) {
+        val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+        val json: Basket = gson.fromJson(file.readText(), Basket::class.java)
         if(items[position].quantity != 1){
             items[position].quantity--
 
-            val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+
             if(file.exists()){
-                val json: Basket = gson.fromJson(file.readText(), Basket::class.java)
+
                 for(item in json.itemList){
                     if (item.item == items[position].item) {
                         item.quantity --
@@ -72,7 +74,12 @@ class CartAdapter(
             }
 
         }else{
+
+            json.itemList.remove(items[position])
             items.removeAt(position)
+            val jsonObject = gson.toJson(json)
+            file.writeText(jsonObject)
+            ((cartActivity).invalidateOptionsMenu())
         }
         notifyItemRemoved(position)
         notifyDataSetChanged()

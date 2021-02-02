@@ -16,10 +16,13 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import fr.isen.leclere.androiderestaurant.databinding.ActivityFoodBinding
+import fr.isen.leclere.androiderestaurant.models.Basket
 import fr.isen.leclere.androiderestaurant.models.DataResult
 import fr.isen.leclere.androiderestaurant.models.Item
 import org.json.JSONObject
+import java.io.File
 
 
 class FoodActivity : AppCompatActivity() {
@@ -118,7 +121,17 @@ class FoodActivity : AppCompatActivity() {
             // User chose the "Settings" item, show the app settings UI...
             true
         }
+        R.id.inscription -> {
+            val intent = Intent(this, CreateAccountActivity::class.java)
+            startActivity(intent)
+            true
+        }
 
+        R.id.connexion -> {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            true
+        }
         R.id.action_cart -> {
             // User chose the "Favorite" action, mark the current item
             // as a favorite...
@@ -135,7 +148,17 @@ class FoodActivity : AppCompatActivity() {
     }
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         val item = menu.findItem(R.id.cartNb)
+        val file = File(cacheDir.absolutePath + "UserCart.json")
+        val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+        val json: Basket = gson.fromJson(file.readText(), Basket::class.java)
+        var nb = 0
+        for(item in json.itemList){
+            nb+=item.quantity
+        }
         val sharedPreference =  getSharedPreferences("PREFERENCE_NUMBER_CART", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("number", nb.toString())
+        editor.apply()
         item.title =sharedPreference.getString("number","0")
         return super.onPrepareOptionsMenu(menu)
     }

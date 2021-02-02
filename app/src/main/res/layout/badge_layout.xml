@@ -7,12 +7,12 @@
         android:id="@+id/badge_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="10"
+        android:background="@drawable/badge_circle"
+        android:gravity="center"
+        android:paddingLeft="8dp"
         android:paddingEnd="8dp"
         android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:gravity="center"
+        android:text="@string/Placeholder"
         android:textColor="#FFF"
-        android:textSize="11sp"
-        android:background="@drawable/badge_circle"/>
+        android:textSize="12sp" />
 </RelativeLayout>

@@ -15,6 +15,8 @@ import fr.isen.leclere.androiderestaurant.models.Basket
 import fr.isen.leclere.androiderestaurant.models.Item
 import fr.isen.leclere.androiderestaurant.models.ItemBasket
 import java.io.File
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FoodDetailsActivity : AppCompatActivity() {
@@ -101,10 +103,9 @@ class FoodDetailsActivity : AppCompatActivity() {
             val jsonObject = gson.toJson(json)
             file.writeText(jsonObject)
         }else {
-            val firstEntry: ItemBasket = ItemBasket(nbToAdd, itemToAdd)
-            val panier: Basket = Basket(listOf(firstEntry) as ArrayList<ItemBasket>)
-            print(panier)
-            val jsonObject = gson.toJson(panier)
+            val list: ArrayList<ItemBasket> = ArrayList(listOf(ItemBasket(nbToAdd, itemToAdd)))
+            val pannier: Basket = Basket(list)
+            val jsonObject = gson.toJson(pannier)
             file.writeText(jsonObject)
         }
         val toast = Toast.makeText(
@@ -120,7 +121,7 @@ class FoodDetailsActivity : AppCompatActivity() {
             nb+=item.quantity
         }
         val sharedPreference =  getSharedPreferences("PREFERENCE_NUMBER_CART", Context.MODE_PRIVATE)
-        var editor = sharedPreference.edit()
+        val editor = sharedPreference.edit()
         editor.putString("number", nb.toString())
         editor.apply()
         invalidateOptionsMenu()
@@ -134,7 +135,17 @@ class FoodDetailsActivity : AppCompatActivity() {
             // User chose the "Settings" item, show the app settings UI...
             true
         }
+        R.id.inscription -> {
+            val intent = Intent(this, CreateAccountActivity::class.java)
+            startActivity(intent)
+            true
+        }
 
+        R.id.connexion -> {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            true
+        }
         R.id.action_cart -> {
             // User chose the "Favorite" action, mark the current item
             // as a favorite...
@@ -152,7 +163,17 @@ class FoodDetailsActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         val item = menu.findItem(R.id.cartNb)
-        val sharedPreference =  getSharedPreferences("PREFERENCE_NUMBER_CART",Context.MODE_PRIVATE)
+        val file = File(cacheDir.absolutePath + "UserCart.json")
+        val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+        val json: Basket = gson.fromJson(file.readText(), Basket::class.java)
+        var nb = 0
+        for(item in json.itemList){
+            nb+=item.quantity
+        }
+        val sharedPreference =  getSharedPreferences("PREFERENCE_NUMBER_CART", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("number", nb.toString())
+        editor.apply()
         item.title =sharedPreference.getString("number","0")
         return super.onPrepareOptionsMenu(menu)
     }
